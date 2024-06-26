@@ -1,0 +1,53 @@
+-- Created a CASE statement that categorizes companies based on average employee tenure
+SELECT 
+    company_name,
+    industry,
+    revenue,
+    employees,
+    healthcare_benefits,
+    paid_time_off_days,
+    maternity_leave_weeks,
+    avg_employee_tenure,
+    CASE
+        WHEN avg_employee_tenure >= 7 THEN 'High Tenure'
+        WHEN avg_employee_tenure >= 5 THEN 'Medium Tenure'
+        ELSE 'Low Tenure'
+    END AS tenure_category
+FROM fortune_companies;
+
+-- Found the average revenue of companies in each industry that have a 'High Tenure' and more than 1000 employees
+SELECT 
+    industry,
+    AVG(revenue) AS ave_revenue
+FROM fortune_companies
+WHERE avg_employee_tenure >= 7 AND employees > 1000
+GROUP BY industry;
+
+-- Found companies that offer both healthcare benefits and at least 15 paid time off days or more than 10 weeks of maternity leave
+SELECT 
+    company_name,
+    healthcare_benefits,
+    paid_time_off_days,
+    maternity_leave_weeks
+FROM fortune_companies
+WHERE healthcare_benefits = 1 AND (paid_time_off_days >= 15 OR maternity_leave_weeks > 10);
+
+-- Calculated the total number of employees and the average revenue for companies in the Technology industry
+SELECT 
+    industry,
+    SUM(employees) AS total_employees,
+    AVG(revenue) AS avg_revenue
+FROM fortune_companies
+WHERE industry = 'Technology'
+GROUP BY industry;
+
+-- Listed industries with their total revenues sorted from highest to lowest revenue
+SELECT 
+    industry, 
+    SUM(revenue) AS total_revenue
+FROM 
+    fortune_companies
+GROUP BY 
+    industry
+ORDER BY 
+    total_revenue DESC;
