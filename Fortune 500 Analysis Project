@@ -1,4 +1,17 @@
--- Created a CASE statement that categorizes companies based on average employee tenure
+CREATE TABLE fortune_companies (  --For this project, I will use a database that has fake Fortune 500 data in it
+    company_id INTEGER PRIMARY KEY,
+    company_name TEXT,
+    industry TEXT,
+    revenue REAL,
+    employees INTEGER,
+    healthcare_benefits BIT,
+    paid_time_off_days INTEGER,
+    maternity_leave_weeks INTEGER,
+    avg_employee_tenure REAL
+);
+
+INSERT INTO fortune_companies (company_name, industry, revenue, employees, healthcare_benefits, paid_time_off_days, maternity_leave_weeks, avg_employee_tenure)
+VALUES-- I Created a CASE statement that categorizes companies based on average employee tenure
 SELECT 
     company_name,
     industry,
