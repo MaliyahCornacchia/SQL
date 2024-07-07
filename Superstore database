@@ -1,3 +1,14 @@
+CREATE TABLE superstore (
+    item_id INTEGER PRIMARY KEY,
+    item_name TEXT,
+    category TEXT,
+    price DECIMAL(10, 2),
+    stock_quantity INTEGER,
+    average_rating DECIMAL(3, 2)
+);
+INSERT INTO superstore (item_id, item_name, category, price, stock_quantity, average_rating)
+VALUES
+  
 --For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
 select (item_name),(price)--I used a SQL query to order the items by price
 From superstore
